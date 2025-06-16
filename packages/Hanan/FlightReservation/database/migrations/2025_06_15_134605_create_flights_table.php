@@ -12,17 +12,18 @@ class CreateFlightsTable extends Migration
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
             $table->string('flight_number')->unique();
-            $table->string('source');
-            $table->string('destination');
+            $table->foreignId('departure_airport_id')->constrained('airports');
+            $table->foreignId('arrival_airport_id')->constrained('airports');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');
-            $table->integer('total_economy_seats')->default(0);
-            $table->integer('total_business_seats')->default(0);
-            $table->json('seat_layout')->nullable();
-            $table->decimal('economy_price', 8, 2);
-            $table->decimal('business_price', 8, 2)->nullable();
+            $table->integer('total_economy_seats');
+            $table->integer('total_business_seats');
+            $table->decimal('base_economy_price', 10, 2);
+            $table->decimal('base_business_price', 10, 2);
+            $table->enum('status', ['scheduled', 'departed', 'arrived', 'cancelled'])->default('scheduled');
             $table->timestamps();
         });
+        
     }
 
     public function down(): void
