@@ -1,0 +1,25 @@
+{
+    "name": "hanan/flight-reservation",
+    "description": "A Laravel package for flight booking system.",
+    "type": "laravel-package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hanan\\FlightReservation\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hanan\\FlightReservation\\FlightReservationServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "spatie/laravel-package-tools": "^1.16",
+        "filament/filament": "^3.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
