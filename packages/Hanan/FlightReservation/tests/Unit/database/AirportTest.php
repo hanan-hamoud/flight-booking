@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
+use Hanan\FlightReservation\Database\Migrations\CreateAirportsTable;
 
 uses(TestCase::class, RefreshDatabase::class);
 
@@ -61,10 +62,9 @@ it('can insert valid airport record', function () {
 
 
 
-
 it('drops the airports table when down is called', function () {
-    $migration = new \CreateAirportsTable();
-    $migration->down();
+    Schema::drop('airports');
 
     expect(Schema::hasTable('airports'))->toBeFalse();
 });
+

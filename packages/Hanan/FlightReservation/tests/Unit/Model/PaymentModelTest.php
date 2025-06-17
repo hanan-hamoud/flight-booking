@@ -23,8 +23,10 @@ it('has the correct fillable properties', function () {
 
 it('casts paid_at as a date', function () {
     $payment = new Payment();
-    expect($payment->getDates())->toContain('paid_at');
+    expect($payment->getCasts())->toHaveKey('paid_at');
+    expect($payment->getCasts()['paid_at'])->toBe('datetime'); // أو 'date' حسب اللي استخدمته
 });
+
 
 it('has a belongsTo relationship with booking', function () {
     $payment = new Payment();

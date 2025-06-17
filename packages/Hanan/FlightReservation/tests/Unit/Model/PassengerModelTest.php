@@ -23,8 +23,10 @@ it('has the correct fillable properties', function () {
 
 it('casts date_of_birth as a date', function () {
     $passenger = new Passenger();
-    expect($passenger->getDates())->toContain('date_of_birth');
+    expect($passenger->getCasts())->toHaveKey('date_of_birth');
+    expect($passenger->getCasts()['date_of_birth'])->toBe('date');
 });
+
 
 it('has a belongsTo relationship with booking', function () {
     $passenger = new Passenger();

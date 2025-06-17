@@ -26,6 +26,7 @@ class FlightReservationServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
     
     

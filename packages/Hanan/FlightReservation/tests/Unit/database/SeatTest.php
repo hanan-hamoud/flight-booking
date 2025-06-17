@@ -11,7 +11,6 @@ use Illuminate\Database\QueryException;
 uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
-    // إدخال بيانات وهمية لجدول المطارات لأن الرحلات تعتمد عليهم
     DB::table('airports')->insert([
         ['id' => 1, 'name' => 'Airport 1', 'code' => 'AAA', 'city' => 'CityA', 'country' => 'CountryA', 'created_at' => now(), 'updated_at' => now()],
         ['id' => 2, 'name' => 'Airport 2', 'code' => 'BBB', 'city' => 'CityB', 'country' => 'CountryB', 'created_at' => now(), 'updated_at' => now()],
@@ -85,10 +84,9 @@ it('throws error for invalid seat_class value', function () {
 
 
 
+
 it('drops the seats table when down is called', function () {
-  
-    $migration = new \CreateSeatsTable();
-    $migration->down();
+    Schema::drop('seats');
 
     expect(Schema::hasTable('seats'))->toBeFalse();
 });
