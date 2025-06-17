@@ -3,11 +3,11 @@
     "description": "A Laravel package for flight booking system.",
     "type": "laravel-package",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Hanan\\FlightReservation\\": "src/"
-        }
-    },
+   "autoload": {
+    "psr-4": {
+        "Hanan\\FlightReservation\\": "src/"
+    }
+},
     "extra": {
         "laravel": {
             "providers": [

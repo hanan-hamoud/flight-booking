@@ -4,14 +4,17 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
-    <testsuites>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-        </testsuite>
-    </testsuites>
+  <testsuites>
+    <testsuite name="Unit">
+        <directory>./tests/Unit</directory>
+        <directory>./packages/Hanan/FlightReservation/tests/Unit</directory>
+    </testsuite>
+    <testsuite name="Feature">
+        <directory>./tests/Feature</directory>
+        <directory>./packages/Hanan/FlightReservation/tests/Feature</directory>
+    </testsuite>
+</testsuites>
+
     <source>
         <include>
             <directory>app</directory>
