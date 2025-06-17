@@ -35,14 +35,11 @@ class BookingService
             throw new \Exception('No available seats in this class.');
         }
 
-        // حجز المقعد (اجعله غير متوفر)
         $availableSeat->is_available = false;
         $availableSeat->save();
 
-        // السعر (ضع 0 أو قيمة افتراضية إذا لم يكن هناك عمود سعر)
         $price = $availableSeat->price ?? 0;
 
-        // إنشاء حجز
         $booking = new Booking();
         $booking->flight_id = $flight->id;
         $booking->booking_reference = uniqid('BR_');

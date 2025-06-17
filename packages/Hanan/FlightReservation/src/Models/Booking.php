@@ -46,4 +46,10 @@ class Booking extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function ticket()
+{
+    return $this->hasOne(Ticket::class);
+}
+
 }

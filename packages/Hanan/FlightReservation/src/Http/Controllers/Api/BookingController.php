@@ -20,7 +20,7 @@ class BookingController extends Controller
     {
         $validated = $request->validate([
             'flight_id' => 'required|integer|exists:flights,id',
-            'passenger_name' => 'required|string|max:255', // لو تريد تخزينه في مكان آخر لاحقاً
+            'passenger_name' => 'required|string|max:255',
             'seat_class' => 'required|string|in:economy,business',
             'payment_details' => 'required|array',
         ]);
