@@ -16,7 +16,8 @@ class FlightReservationServiceProvider extends PackageServiceProvider
             ->hasMigrations([
                 'create_flights_table',
             ])
-            ->hasRoute('web');
+            ->hasRoute('web')
+            ->hasRoute('api');
 
 
 

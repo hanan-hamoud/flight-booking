@@ -5,7 +5,9 @@
     "license": "MIT",
    "autoload": {
     "psr-4": {
-        "Hanan\\FlightReservation\\": "src/"
+        "Hanan\\FlightReservation\\": "packages/Hanan/FlightReservation/"
+        
+
     }
 },
     "extra": {

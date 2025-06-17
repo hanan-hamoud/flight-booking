@@ -16,12 +16,11 @@ class BookingController extends Controller
         $this->bookingService = $bookingService;
     }
 
-  
     public function book(Request $request)
     {
         $validated = $request->validate([
             'flight_id' => 'required|integer|exists:flights,id',
-            'passenger_name' => 'required|string|max:255',
+            'passenger_name' => 'required|string|max:255', // لو تريد تخزينه في مكان آخر لاحقاً
             'seat_class' => 'required|string|in:economy,business',
             'payment_details' => 'required|array',
         ]);
@@ -42,15 +41,36 @@ class BookingController extends Controller
         }
     }
 
-    
     public function ticket(Booking $booking)
     {
-        $ticket = $booking->ticket; 
+        $ticket = $booking->ticket;
 
         if (!$ticket) {
             return response()->json(['error' => 'Ticket not found'], 404);
         }
 
         return response()->json($ticket);
+    }
+
+    public function pay(Booking $booking, Request $request)
+    {
+        $validated = $request->validate([
+            'transaction_id' => 'required|string|unique:payments,transaction_id',
+            'amount' => 'required|numeric',
+            'payment_method' => 'required|string',
+            'status' => 'in:pending,completed,failed',
+            'paid_at' => 'nullable|date',
+        ]);
+
+        $payment = $booking->payment()->create([
+            'transaction_id' => $validated['transaction_id'],
+            'amount' => $validated['amount'],
+            'payment_method' => $validated['payment_method'],
+            'status' => $validated['status'] ?? 'completed',
+            'paid_at' => $validated['paid_at'] ?? now(),
+            'currency' => 'USD',
+        ]);
+
+        return response()->json($payment, 201);
     }
 }

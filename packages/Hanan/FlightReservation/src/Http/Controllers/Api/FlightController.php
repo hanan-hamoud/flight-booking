@@ -1,10 +1,10 @@
 <?php
 
 namespace Hanan\FlightReservation\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use Hanan\FlightReservation\Services\FlightAvailabilityService;
 use Illuminate\Http\Request;
+use Hanan\FlightReservation\Models\Flight;
 
 class FlightController extends Controller
 {
@@ -31,4 +31,10 @@ class FlightController extends Controller
 
         return response()->json($flights);
     }
+
+    public function index()
+    {
+        return Flight::all(); 
+    }
+
 }
